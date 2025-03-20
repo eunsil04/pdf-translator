@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <main className={styles.container}>
       {/* 헤더 부분 */}
-      <h1 className={styles.title}>PDFMathTranslate 은실이 만든 페이지</h1>
+      <h1 className={styles.title}>PDFMathTranslate iSW_캡스톤 페이지</h1>
 
       {/* 파일/링크 선택 */}
       <div className={styles.radioGroup}>
@@ -61,7 +61,7 @@ export default function Page() {
       {/* 업로드 구역 */}
       {isFile ? (
         <div>
-          <p style={{ marginBottom: "0.5rem", color: "#666", fontSize: "0.875rem" }}>
+          <p style={{ marginBottom: "0.5rem", color: "#FEEEEB", fontSize: "0.875rem" }}>
             File &lt; 5 MB
           </p>
           <div
