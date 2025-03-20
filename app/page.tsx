@@ -1,103 +1,166 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, DragEvent } from "react";
+import styles from "./page.module.css";
+
+export default function Page() {
+  const [isFile, setIsFile] = useState(true);   // File / Link 선택
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [linkValue, setLinkValue] = useState("");
+  const [preview, setPreview] = useState<string>(""); // 간단히 파일명 미리보기 등
+
+  // 드래그앤드롭 관련 이벤트
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      setUploadedFile(file);
+      setPreview(file.name);
+    }
+  };
+
+  // 파일 선택 핸들러
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    setUploadedFile(file);
+    setPreview(file.name);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className={styles.container}>
+      {/* 헤더 부분 */}
+      <h1 className={styles.title}>PDFMathTranslate 은실!</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* 파일/링크 선택 */}
+      <div className={styles.radioGroup}>
+        <label className={styles.radioLabel}>
+          <input
+            type="radio"
+            name="type"
+            checked={isFile}
+            onChange={() => setIsFile(true)}
+          />
+          <span>File</span>
+        </label>
+        <label className={styles.radioLabel}>
+          <input
+            type="radio"
+            name="type"
+            checked={!isFile}
+            onChange={() => setIsFile(false)}
+          />
+          <span>Link</span>
+        </label>
+      </div>
+
+      {/* 업로드 구역 */}
+      {isFile ? (
+        <div>
+          <p style={{ marginBottom: "0.5rem", color: "#666", fontSize: "0.875rem" }}>
+            File &lt; 5 MB
+          </p>
+          <div
+            className={styles.dragArea}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {uploadedFile ? (
+              <p>{uploadedFile.name}</p>
+            ) : (
+              <div>
+                <p>파일을 끌어 놓으세요</p>
+                <p>혹은 파일을 업로드하세요</p>
+                <input
+                  type="file"
+                  className={styles.hiddenInput}
+                  id="fileUpload"
+                  onChange={handleFileChange}
+                />
+                <label htmlFor="fileUpload" className={styles.uploadLabel}>
+                  업로드
+                </label>
+              </div>
+            )}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      ) : (
+        <div className={styles.linkInputContainer}>
+          <label className={styles.linkLabel}>Link URL</label>
+          <input
+            type="text"
+            value={linkValue}
+            onChange={(e) => setLinkValue(e.target.value)}
+            placeholder="https://example.com/document.pdf"
+            className={styles.linkInput}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      )}
+
+      {/* Preview 영역 */}
+      <div className={styles.previewContainer}>
+        <h2 className={styles.previewTitle}>Document Preview</h2>
+        {preview ? (
+          <p>{preview}</p>
+        ) : (
+          <p className={styles.previewText}>미리보기할 파일이 없습니다.</p>
+        )}
+      </div>
+
+      {/* 옵션들 */}
+      <div className={styles.optionContainer}>
+        <h3 className={styles.optionTitle}>Option</h3>
+        <div className={styles.optionRow}>
+          <div className={styles.optionColumn}>
+            <label className={styles.optionLabel}>Service</label>
+            <select className={styles.optionSelect}>
+              <option value="google">Google</option>
+              <option value="openai">OpenAI</option>
+            </select>
+          </div>
+
+          <div className={styles.optionColumn}>
+            <label className={styles.optionLabel}>Translate from</label>
+            <select className={styles.optionSelect}>
+              <option value="en">English</option>
+              <option value="ko">Korean</option>
+              <option value="zh">Chinese</option>
+            </select>
+          </div>
+
+          <div className={styles.optionColumn}>
+            <label className={styles.optionLabel}>Translate to</label>
+            <select className={styles.optionSelect}>
+              <option value="en">English</option>
+              <option value="ko">Korean</option>
+              <option value="zh">Chinese</option>
+            </select>
+          </div>
+
+          <div className={styles.optionColumn}>
+            <label className={styles.optionLabel}>Pages</label>
+            <select className={styles.optionSelect}>
+              <option value="1">First 1 page</option>
+              <option value="2">First 2 pages</option>
+              <option value="5">First 5 pages</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* 번역 버튼 */}
+      <button
+        className={styles.translateButton}
+        onClick={() => {
+          alert("Translate 버튼 클릭!");
+        }}
+      >
+        Translate
+      </button>
+    </main>
   );
 }
