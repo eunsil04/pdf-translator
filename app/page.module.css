@@ -1,139 +1,139 @@
 .container {
-    padding: 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  /* 라디오 버튼 그룹 */
-  .radioGroup {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .radioLabel {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  /* 드래그앤드롭 영역 */
-  .dragArea {
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .dragArea p {
-    color: #666;
-    margin: 0.5rem 0;
-  }
-  
-  .hiddenInput {
-    display: none;
-  }
-  
-  .uploadLabel {
-    display: inline-block;
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #0400ff;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  /* 링크 입력 영역 */
-  .linkInputContainer {
-    margin-bottom: 1rem;
-  }
-  
-  .linkLabel {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #666;
-    font-size: 0.875rem;
-  }
-  
-  .linkInput {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* 미리보기 영역 */
-  .previewContainer {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    height: 8rem;
-    margin-bottom: 1rem;
-  }
-  
-  .previewTitle {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  
-  .previewText {
-    color: #666;
-  }
-  
-  /* 옵션 영역 */
-  .optionContainer {
-    margin-bottom: 1rem;
-  }
-  
-  .optionTitle {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  
-  .optionRow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .optionColumn {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .optionLabel {
-    color: #666;
-    font-size: 0.875rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .optionSelect {
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* 번역 버튼 */
-  .translateButton {
-    padding: 0.5rem 1rem;
-    background-color: #0400ff;;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .translateButton:hover {
-    background-color: #0800ed;;
-  }
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* 라디오 버튼 그룹 */
+.radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 드래그앤드롭 영역 */
+.dragArea {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.dragArea p {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.uploadLabel {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #0400ff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 링크 입력 영역 */
+.linkInputContainer {
+  margin-bottom: 1rem;
+}
+
+.linkLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.linkInput {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 미리보기 영역 */
+.previewContainer {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 8rem;
+  margin-bottom: 1rem;
+}
+
+.previewTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.previewText {
+  color: #666;
+}
+
+/* 옵션 영역 */
+.optionContainer {
+  margin-bottom: 1rem;
+}
+
+.optionTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.optionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.optionColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionLabel {
+  color: #666;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.optionSelect {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 번역 버튼 */
+.translateButton {
+  padding: 0.5rem 1rem;
+  background-color: #0400ff;;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.translateButton:hover {
+  background-color: #0800ed;;
+}
