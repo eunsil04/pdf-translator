@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <main className={styles.container}>
       {/* 헤더 부분 */}
-      <h1 className={styles.title}>PDFMathTranslate 최은실이 만든 페이지</h1>
+      <h1 className={styles.title}>PDFMathTranslate 은실이 만든 페이지</h1>
 
       {/* 파일/링크 선택 */}
       <div className={styles.radioGroup}>
